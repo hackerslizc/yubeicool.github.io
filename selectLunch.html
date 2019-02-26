@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>选午餐</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            padding: 20px;
+        }
+        
+        body {
+            width: 100%;
+            position: relative;
+        }
+        
+        .animate {
+            transition: all ease-out 0.3s 0s;
+            -webkit-transition: all ease-out 0.3s 0s;
+            -moz-transition: all ease-out 0.3s 0s;
+            -ms-transition: all ease-out 0.3s 0s;
+            -o-transition: all ease-out 0.3s 0s;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .J_selectBtn {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: none;
+            background: #07bba2;
+            font-size: 20px;
+            color: #fff;
+            margin: 0 auto;
+            text-align: center;
+            cursor: pointer;
+            animation: mymove 5s infinite;
+            -webkit-animation: mymove 5s infinite;
+        }
+        
+        @keyframes mymove {
+            0% {
+                width: 120px;
+                box-shadow: 0 0px 10px 2px rgba(10, 187, 162, 0.25);
+            }
+            50% {
+                color: #ebebeb;
+                box-shadow: 0 0px 15px 10px rgba(10, 187, 162, 0.25);
+            }
+            100% {
+                width: 120px;
+                box-shadow: 0 0px 10px 2px rgba(10, 187, 162, 0.25);
+            }
+        }
+        
+        @-webkit-keyframes mymove
+        /*Safari and Chrome*/
+        
+        {
+            0% {
+                width: 120px;
+                box-shadow: 0 0px 10px 2px rgba(10, 187, 162, 0.25);
+            }
+            50% {
+                color: #ebebeb;
+                box-shadow: 0 0px 15px 10px rgba(10, 187, 162, 0.25);
+            }
+            100% {
+                width: 120px;
+                box-shadow: 0 0px 10px 2px rgba(10, 187, 162, 0.25);
+            }
+        }
+        
+        .J_lunch_box {
+            padding: 20px;
+            text-align: center;
+            color: #FF9800;
+            font-size: 30px;
+            font-weight: bold;
+            border: 1px dotted #FF9800;
+            margin-top: 20px;
+            min-height: 40px;
+            line-height: 40px;
+        }
+        
+        .lunch-list {
+            padding: 20px;
+            color: cadetblue;
+            line-height: 26px;
+            font-size: 16px;
+        }
+        
+        .btn-text {
+            margin-top: -21px;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            text-align: center;
+        }
+
+    </style>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <div class="J_selectBtn animate">
+                <div class="btn-text">
+                    <p style="margin: 0;">午饭抽取</p>
+                    <p style="font-size: 12px;margin: 0;">Choosing lunch</p>
+                </div>
+            </div>
+        </div>
+        <div class="J_lunch_box animate"></div>
+    </div>
+    <p style="color: cadetblue;margin-bottom: 0;">可选类型如下：</p>
+    <div class="lunch-list">
+        16元套饭（16RMB Set meal），大蓉和（Sichuan cuisine），亲家小味（Set meal&Rice noodles），乡村基（CSC），大米先生（Chinese Fast Food），冒菜（Instant Boiled Spicy Hot Pot），真霸牛肉面（noodles），无间道（pancake&beef soup），猪脚饭（Rice with Stewed Pork），花溪米线（Rice noodles），摊摊面（noodles），老麻抄手（wonton），豆汤饭（Rice with bean soup&noodles），砂锅(Casserole)
+    </div>
+    <script>
+        $(document).ready(function() {
+            var string = "16元套饭（16RMB Set meal）,大蓉和（Sichuan cuisine）,亲家小味（Set meal&Rice noodles）,乡村基（CSC）,大米先生（Chinese Fast Food）,冒菜（Instant Boiled Spicy Hot Pot）,真霸牛肉面（noodles）,无间道（pancake&beef soup）,猪脚饭（Rice with Stewed Pork）,花溪米线（Rice noodles）,摊摊面（noodles）,老麻抄手（wonton）,豆汤饭（Rice with bean soup&noodles）,砂锅(Casserole)"; //原始数据
+
+            function selectLunch() {
+                var array = string.split(","); //转化为数组
+                var value = array[Math.round(Math.random() * (array.length - 1))]; //随机抽取一个值
+                return value;
+            }
+            var buttonDom = $('.J_selectBtn');
+
+            buttonDom.on('click', function(e) {
+                var box = $('.J_lunch_box'),
+                    value = selectLunch();
+                box.html('');
+                box.html(value);
+                buttonDom.unbind('click');
+                buttonDom.css({
+                    background: '#057364',
+                    cursor: 'default',
+                    color: '#e8e8e8',
+                    boxShadow: 'none'
+                })
+            });
+        });
+
+    </script>
+</body>
+
+</html>
